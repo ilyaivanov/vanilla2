@@ -1,0 +1,43 @@
+.item {
+  //padding from bottom is more pleasing for my eye by aligning text more horizontaly
+  padding: 5px 0 7px 0;
+  color: rgb(225, 229, 232);
+
+  display: flex;
+}
+
+$icon-size: 7px;
+.circle {
+  min-width: $icon-size;
+  height: $icon-size;
+  margin-right: 4px;
+
+  //depends upon icon size
+  margin-top: 6px;
+  background-color: rgb(225, 229, 232);
+
+  box-sizing: border-box;
+}
+
+.circle.empty {
+  background-color: initial;
+  border: 1px solid rgb(225, 229, 232);
+}
+
+.item:hover {
+  background-color: rgb(44, 49, 51);
+  color: white;
+}
+
+.board {
+  display: flex;
+  overflow-x: auto;
+
+  // border-bottom: 4px solid rgb(91, 6, 91);
+  border-top: 4px solid rgb(91, 6, 91);
+}
+
+.board > div {
+  min-width: 300px;
+  flex: 1;
+}

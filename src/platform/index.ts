@@ -1,6 +1,6 @@
 type Props = {
   id?: string;
-  children?: (string | HTMLElement)[];
+  children?: (string | Node)[];
   class?: string | Record<string, boolean>;
 };
 
@@ -21,7 +21,7 @@ export function li(props: Props) {
 }
 
 function assignProps(el: HTMLElement, props: Props) {
-  if (typeof props.class === "string") el.classList.add(props.class);
+  if (typeof props.class === "string") el.className = props.class;
 
   if (typeof props.class === "object") {
     for (const className in props.class) {

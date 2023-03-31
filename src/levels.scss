@@ -1,0 +1,30 @@
+$page-max-width: 700px;
+$page-padding: 20px;
+
+$item-step: 20px;
+
+.level-0 {
+  padding-left: calc(
+    max((100% - $page-max-width) / 2, $page-padding) + $item-step * 0
+  );
+  padding-right: calc(
+    max((100% - $page-max-width) / 2, $page-padding) + $item-step * 0
+  );
+}
+
+@for $i from 1 through 30 {
+  .level-#{$i} {
+    padding-left: calc(
+      max((100% - $page-max-width) / 2, $page-padding) + $item-step * $i
+    );
+    padding-right: calc(
+      max((100% - $page-max-width) / 2, $page-padding) + $item-step * $i
+    );
+  }
+
+  .board-#{$i} {
+    padding-left: calc(
+      max((100% - $page-max-width) / 2, $page-padding) + $item-step * $i
+    );
+  }
+}
