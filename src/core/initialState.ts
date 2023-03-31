@@ -14,27 +14,20 @@ export const tree = {
         "Best Music Of Hacking Your Mind_v.02 (90 minutes of reading, learning, studying, programming) i 2 4 2 24 3123 1283 1273 172 131 amsda jsd ad"
       ),
     ]),
-    board("Music", [
-      item("Metal", [
-        item("Marilyn Manson"),
-        item("Tool"),
-        item("Kittie"),
-        item("Pantera"),
-        item("Children of Bodom"),
-        item("Animals as Leaders"),
-        item("Dawn of Solace"),
-        item("Sepultura"),
-        item("Cadaveria"),
-        item("Ancient"),
-        item("Daylight Dies"),
-        item("Slipknot"),
-        item("Mudvayne"),
-        item("Paradise Lost"),
-        item("Katatonia"),
-        item("Dark Lunacy"),
-        item("Saturnus"),
-        item("Evergrey"),
-        item("Soulfly"),
+    board("Music (board)", [
+      item("Piano", [
+        item("David Nevue", [
+          item(
+            `David Nevue - "Overcome" - Performed Live the 2017 Whisperings "All-Star" Concert`
+          ),
+          item(`David Nevue - Live Concert Performances`),
+        ]),
+        item("Isaac Shepard", [item("Healing")]),
+        item("Ludovico Eunaidi"),
+        item("Brian Crain"),
+        item("Greg Maroney"),
+        item("Greg Haines"),
+        //
       ]),
       item("Metal", [
         item("Marilyn Manson"),
@@ -57,27 +50,7 @@ export const tree = {
         item("Evergrey"),
         item("Soulfly"),
       ]),
-      item("Metal", [
-        item("Marilyn Manson"),
-        item("Tool"),
-        item("Kittie"),
-        item("Pantera"),
-        item("Children of Bodom"),
-        item("Animals as Leaders"),
-        item("Dawn of Solace"),
-        item("Sepultura"),
-        item("Cadaveria"),
-        item("Ancient"),
-        item("Daylight Dies"),
-        item("Slipknot"),
-        item("Mudvayne"),
-        item("Paradise Lost"),
-        item("Katatonia"),
-        item("Dark Lunacy"),
-        item("Saturnus"),
-        item("Evergrey"),
-        item("Soulfly"),
-      ]),
+
       item("Metal", [
         item("Marilyn Manson"),
         item("Tool"),
@@ -104,13 +77,6 @@ export const tree = {
         item("Deep house"),
         item("Xenia"),
         item("Miss Monique"),
-      ]),
-
-      item("Piano", [
-        item("Deep house"),
-        item("Xenia"),
-        item("Miss Monique"),
-        //
       ]),
 
       item("Ambient", [

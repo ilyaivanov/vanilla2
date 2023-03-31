@@ -4,40 +4,57 @@ import "./index.scss";
 import "./app.scss";
 import "./levels.scss";
 
-function renderChildren(item: Item, level: number): Node {
-  if (!item.isOpen) return document.createDocumentFragment();
-  else
-    return div({
-      class: {
-        children: true,
-        board: item.view === "board",
-        ["board-" + level]: item.view === "board",
-      },
-      children: item.children.map((i) =>
-        render(i, item.view === "board" ? 0 : level)
-      ),
-    });
-}
-
-function render(item: Item, level: number): HTMLElement {
+function render(
+  item: Item,
+  level: number,
+  isInsideBoard: boolean
+): HTMLElement {
+  const isBoard = item.view === "board";
+  const nextLevel = level + 1;
   return div({
     children: [
       div({
-        class: "item level-" + level,
+        class: {
+          item: true,
+          [`level-${level}`]: !isInsideBoard,
+          [`level-inside-board-${level}`]: isInsideBoard,
+        },
         children: [
           span({ class: { circle: true, empty: item.children.length == 0 } }),
           item.title,
         ],
       }),
 
-      renderChildren(item, level + 1),
+      item.isOpen &&
+        div({
+          class: {
+            children: true,
+            board: isBoard,
+            ["board-" + nextLevel]: isBoard,
+            "scroll-container": isBoard,
+          },
+          children: [
+            ...item.children.map((i) =>
+              render(i, isBoard ? 0 : nextLevel, isInsideBoard || isBoard)
+            ),
+            item.view !== "board"
+              ? div({
+                  class: {
+                    level: true,
+                    [`children-line-${nextLevel}`]: !isInsideBoard,
+                    [`children-line-inside-board-${level}`]: isInsideBoard,
+                  },
+                })
+              : undefined,
+          ],
+        }),
     ],
   });
 }
 
 function createApp() {
   return div({
-    children: tree.root.children.map((i) => render(i, 0)),
+    children: tree.root.children.map((i) => render(i, 0, false)),
   });
 }
 

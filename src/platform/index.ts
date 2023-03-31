@@ -1,6 +1,6 @@
 type Props = {
   id?: string;
-  children?: (string | Node)[];
+  children?: (string | Node | undefined | false)[];
   class?: string | Record<string, boolean>;
 };
 
@@ -30,7 +30,9 @@ function assignProps(el: HTMLElement, props: Props) {
   }
 
   if (props.children) {
-    for (const child of props.children) el.append(child);
+    for (const child of props.children) {
+      if (child) el.append(child);
+    }
   }
 
   if (props.id) el.id = props.id;

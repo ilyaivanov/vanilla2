@@ -1,7 +1,5 @@
-$page-max-width: 700px;
-$page-padding: 20px;
-
-$item-step: 20px;
+@use "sass:math";
+@import "./constants.scss";
 
 .level-0 {
   padding-left: calc(
@@ -12,7 +10,7 @@ $item-step: 20px;
   );
 }
 
-@for $i from 1 through 30 {
+@for $i from 0 through 10 {
   .level-#{$i} {
     padding-left: calc(
       max((100% - $page-max-width) / 2, $page-padding) + $item-step * $i
@@ -22,9 +20,33 @@ $item-step: 20px;
     );
   }
 
+  .level-inside-board-#{$i} {
+    padding-left: $item-step * $i;
+  }
+
   .board-#{$i} {
     padding-left: calc(
       max((100% - $page-max-width) / 2, $page-padding) + $item-step * $i
     );
+  }
+
+  .children-line-#{$i} {
+    left: calc(
+      max((100% - $page-max-width) / 2, $page-padding) +
+        (
+          $item-step *
+            $i -
+            $item-step +
+            math.div($icon-size, 2) -
+            math.div($children-line-width, 2)
+        )
+    );
+  }
+
+  .children-line-inside-board-#{$i} {
+    left: $item-step *
+      $i +
+      math.div($icon-size, 2) -
+      math.div($children-line-width, 2);
   }
 }

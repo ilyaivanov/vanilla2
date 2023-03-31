@@ -1,3 +1,5 @@
+@import "./constants.scss";
+
 .item {
   //padding from bottom is more pleasing for my eye by aligning text more horizontaly
   padding: 5px 0 7px 0;
@@ -6,7 +8,6 @@
   display: flex;
 }
 
-$icon-size: 7px;
 .circle {
   min-width: $icon-size;
   height: $icon-size;
@@ -33,11 +34,23 @@ $icon-size: 7px;
   display: flex;
   overflow-x: auto;
 
-  // border-bottom: 4px solid rgb(91, 6, 91);
-  border-top: 4px solid rgb(91, 6, 91);
+  border-top: 2px solid rgb(91, 6, 91);
+  border-bottom: 2px solid rgb(91, 6, 91);
 }
 
 .board > div {
   min-width: 300px;
   flex: 1;
+}
+
+.children {
+  position: relative;
+}
+
+.level {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgb(52, 35, 52);
 }

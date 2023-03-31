@@ -1,5 +1,6 @@
 import { generateRandomId } from "./utils";
 
+export type ItemType = "folder" | "channel" | "playlist" | "video";
 export type Item = {
   id: string;
   title: string;
@@ -7,6 +8,7 @@ export type Item = {
   parent?: Item;
   isOpen: boolean;
   view: "tree" | "board";
+  type: ItemType;
 };
 
 export const item = (text: string, children: Item[] = []): Item => {
@@ -16,6 +18,7 @@ export const item = (text: string, children: Item[] = []): Item => {
     isOpen: children.length > 0,
     id: generateRandomId(),
     view: "tree",
+    type: "folder",
   };
   children.forEach((c) => (c.parent = item));
   return item;
