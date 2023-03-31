@@ -1,0 +1,43 @@
+{
+  "name": "vanilla2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "start": "webpack serve --mode=development",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyaivanov/vanilla2.git"
+  },
+  "keywords": [],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.9",
+    "@types/jest": "^29.2.6",
+    "@types/wicg-file-system-access": "^2020.9.5",
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.3.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "prettier": "^2.7.1",
+    "sass": "^1.60.0",
+    "sass-loader": "^13.2.2",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.1",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilyaivanov/vanilla2/issues"
+  },
+  "homepage": "https://github.com/ilyaivanov/vanilla2#readme"
+}
