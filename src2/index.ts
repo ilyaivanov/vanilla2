@@ -1,4 +1,4 @@
-import { div, fragment } from "../src/platform";
+import { div, fragment, img } from "../src/platform";
 import { tree } from "../src/core/initialState";
 import { Item, getItemAbove, getItemBelow, isRoot } from "../src/core/tree";
 import "./index.scss";
@@ -7,14 +7,25 @@ function renderItem(item: Item): Node {
   return fragment([
     div({
       id: item.id,
-      class: "item",
+      class: {
+        item: true,
+        "item-with-image": !!item.imageUrl,
+      },
       children: [
-        div({
-          class: {
-            "item-icon": true,
-            "item-icon-full": item.children.length > 0,
-          },
-        }),
+        item.imageUrl
+          ? img({
+              class: {
+                "item-channel-image": item.type === "channel",
+                "item-video-image": item.type === "video",
+              },
+              src: item.imageUrl,
+            })
+          : div({
+              class: {
+                "item-icon": true,
+                "item-icon-full": item.children.length > 0,
+              },
+            }),
         item.title,
       ],
     }),
@@ -24,7 +35,12 @@ function renderItem(item: Item): Node {
 function renderChildren(item: Item) {
   return div({
     id: "c" + item.id,
-    class: "children",
+    class: {
+      children: true,
+      "folder-channel-image": item.type === "folder",
+      "channel-children": item.type === "channel",
+      "video-children": item.type === "video",
+    },
     children: item.children.map(renderItem),
   });
 }
