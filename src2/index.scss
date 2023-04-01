@@ -1,3 +1,4 @@
+@use "sass:math";
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -17,6 +18,8 @@ body {
   overflow: overlay;
 }
 
+$icon-size: 5px;
+
 .page {
   padding-top: 30px;
   max-width: 700px;
@@ -28,11 +31,17 @@ body {
 }
 
 .item-icon {
-  min-width: 4px;
-  height: 4px;
-  background-color: white;
+  min-width: $icon-size;
+  height: $icon-size;
+
   margin-right: 11px;
-  margin-top: 8px;
+  margin-top: 7px;
+  box-sizing: border-box;
+  border: 1px solid white;
+}
+
+.item-icon-full {
+  background-color: white;
 }
 
 .item {
@@ -40,9 +49,17 @@ body {
   padding: 4px 0 6px 0;
 }
 
+.children {
+  margin-left: math.floor(math.div($icon-size, 2));
+  padding-left: 20px;
+  border-left: 1px solid #27292a;
+}
+
 .selection-box {
   position: absolute;
   left: 0;
   right: 0;
   background-color: #27292a;
+
+  transition: top 100ms ease-in-out, height 100ms ease-in-out;
 }

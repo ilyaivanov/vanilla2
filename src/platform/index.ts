@@ -1,11 +1,22 @@
+type Child = string | Node | undefined | false;
+
 type Props = {
   id?: string;
-  children?: (string | Node | undefined | false)[];
+  children?: Child[];
   class?: string | Record<string, boolean>;
 };
 
 export function div(props: Props) {
   return assignProps(document.createElement("div"), props);
+}
+
+export function fragment(children: Child[]) {
+  const fragment = document.createDocumentFragment();
+  for (const child of children) {
+    if (child) fragment.append(child);
+  }
+
+  return fragment;
 }
 
 type ImageProps = Props & {
