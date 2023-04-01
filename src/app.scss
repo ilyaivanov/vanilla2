@@ -6,18 +6,36 @@
   color: rgb(225, 229, 232);
 
   display: flex;
+
+  align-items: center;
 }
 
 .circle {
   min-width: $icon-size;
   height: $icon-size;
-  margin-right: 4px;
+  margin-right: $image-to-text;
 
   //depends upon icon size
-  margin-top: 6px;
+  // margin-top: 6px;
   background-color: rgb(225, 229, 232);
 
   box-sizing: border-box;
+}
+
+.channel-circle {
+  object-fit: cover;
+  min-width: $channel-icon-size;
+  width: $channel-icon-size;
+  height: $channel-icon-size;
+  border-radius: $channel-icon-size;
+  margin-right: $image-to-text;
+}
+
+.video-preview {
+  width: 100px;
+  height: 56px;
+
+  margin-right: $image-to-text;
 }
 
 .circle.empty {

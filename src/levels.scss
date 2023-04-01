@@ -1,15 +1,6 @@
 @use "sass:math";
 @import "./constants.scss";
 
-.level-0 {
-  padding-left: calc(
-    max((100% - $page-max-width) / 2, $page-padding) + $item-step * 0
-  );
-  padding-right: calc(
-    max((100% - $page-max-width) / 2, $page-padding) + $item-step * 0
-  );
-}
-
 @for $i from 0 through 10 {
   .level-#{$i} {
     padding-left: calc(

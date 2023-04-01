@@ -1,4 +1,4 @@
-import { div, span } from "./platform";
+import { div, span, img } from "./platform";
 import { tree, Item } from "./core";
 import "./index.scss";
 import "./app.scss";
@@ -20,7 +20,21 @@ function render(
           [`level-inside-board-${level}`]: isInsideBoard,
         },
         children: [
-          span({ class: { circle: true, empty: item.children.length == 0 } }),
+          item.imageUrl
+            ? img({
+                src: item.imageUrl,
+                class: {
+                  "channel-circle": item.type == "channel",
+                  "video-preview": item.type == "video",
+                  //
+                },
+              })
+            : span({
+                class: {
+                  circle: true,
+                  empty: item.children.length == 0,
+                },
+              }),
           item.title,
         ],
       }),

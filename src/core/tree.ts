@@ -9,6 +9,8 @@ export type Item = {
   isOpen: boolean;
   view: "tree" | "board";
   type: ItemType;
+
+  imageUrl?: string;
 };
 
 export const item = (text: string, children: Item[] = []): Item => {
@@ -22,6 +24,28 @@ export const item = (text: string, children: Item[] = []): Item => {
   };
   children.forEach((c) => (c.parent = item));
   return item;
+};
+
+export const channel = (
+  text: string,
+  image: string,
+  children: Item[] = []
+): Item => {
+  const res = item(text, children);
+  res.type = "channel";
+  res.imageUrl = image;
+  return res;
+};
+
+export const video = (
+  text: string,
+  image: string,
+  children: Item[] = []
+): Item => {
+  const res = item(text, children);
+  res.type = "video";
+  res.imageUrl = image;
+  return res;
 };
 
 export const board = (text: string, children: Item[] = []): Item => {

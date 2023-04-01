@@ -1,9 +1,27 @@
-import { board, item } from "./tree";
+import { board, channel, item, video } from "./tree";
 
 export const tree = {
   root: item("Root", [
     item("Item 4", [
-      item("Item 4.1"),
+      item("Item 4.1", [
+        channel(
+          "Andrew Huberman",
+          "https://yt3.googleusercontent.com/5ONImZvpa9_hYK12Xek2E2JLzRc732DWsZMX2F-AZ1cTutTQLBuAmcEtFwrCgypqJncl5HrV2w=s176-c-k-c0x00ffffff-no-rj"
+        ),
+        channel(
+          "Amazing Atheist",
+          "https://yt3.ggpht.com/ytc/AAUvwnjEtU196Yiea9TR5x-J1SIvubXQ9uT6V7FtyEpj4A=s240-c-k-c0xffffffff-no-rj-mo"
+        ),
+        channel(
+          "VSause",
+          "https://yt3.ggpht.com/ytc/AAUvwnhZ3RdTd90CWLjszcugYGMU4I72zJAVkphAfSflTQ=s240-c-k-c0xffffffff-no-rj-mo",
+          [
+            video("First", "https://i.ytimg.com/vi/9Vmwsg8Eabo/mqdefault.jpg"),
+            //
+          ]
+        ),
+        item("Item 4.2", [item("Item 4.2.4")]),
+      ]),
       item("Item 4.2", [
         item("Item 4.2.1"),
         item("Item 4.2.2"),
@@ -16,6 +34,14 @@ export const tree = {
     ]),
     board("Music (board)", [
       item("Piano", [
+        channel(
+          "VSause",
+          "https://yt3.ggpht.com/ytc/AAUvwnhZ3RdTd90CWLjszcugYGMU4I72zJAVkphAfSflTQ=s240-c-k-c0xffffffff-no-rj-mo",
+          [
+            video("First", "https://i.ytimg.com/vi/9Vmwsg8Eabo/mqdefault.jpg"),
+            //
+          ]
+        ),
         item("David Nevue", [
           item(
             `David Nevue - "Overcome" - Performed Live the 2017 Whisperings "All-Star" Concert`
