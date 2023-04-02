@@ -1,11 +1,26 @@
 import { tree } from "./core/initialState";
 import { getItemAbove, getItemBelow, isRoot } from "./core/tree";
 import { closeItem, createApp, openItem } from "./ui/ui";
-import { selectItem, selectedItem } from "./ui/selectionBox";
+import {
+  isEditing,
+  selectItem,
+  selectedItem,
+  startEdit,
+  stopEdit,
+} from "./ui/selectionBox";
 
 document.body.appendChild(createApp());
 
 window.addEventListener("keydown", (e) => {
+  if (isEditing) {
+    if (e.code === "Enter" || e.code === "Escape") {
+      stopEdit();
+      e.preventDefault();
+    }
+
+    return;
+  }
+
   if (e.code === "ArrowDown") {
     const nextItem = getItemBelow(tree.root, selectedItem);
     if (nextItem) selectItem(nextItem);
@@ -22,6 +37,9 @@ window.addEventListener("keydown", (e) => {
     if (!selectedItem.isOpen) openItem(selectedItem);
     else if (selectedItem.children.length > 0)
       selectItem(selectedItem.children[0]);
+  } else if (e.code === "KeyE") {
+    startEdit();
+    e.preventDefault();
   }
 });
 

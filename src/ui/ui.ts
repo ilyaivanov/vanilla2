@@ -12,8 +12,8 @@ type ExpandedElement = {
 const boards: ExpandedElement[] = [];
 function createBoard(element: HTMLElement) {
   let originalPadding = 0;
-  let origianl = 0;
   let left = 0;
+  // this is ugly, I need to come back to this code later
   function assignStyles() {
     //   // i don't need to get left on each resize
     //   // this will make a flashing position of an element
@@ -25,8 +25,6 @@ function createBoard(element: HTMLElement) {
     boards.push({ element, originalPadding });
     assignStyles();
   });
-
-  // window.addEventListener("resize", assignStyles);
 }
 
 function renderItem(item: Item): Node {
@@ -52,7 +50,11 @@ function renderItem(item: Item): Node {
                 "item-icon-full": item.children.length > 0,
               },
             }),
-        item.title,
+        div({
+          id: "text-" + item.id,
+          class: "item-text",
+          children: [item.title],
+        }),
       ],
     }),
     item.isOpen && renderChildren(item),
