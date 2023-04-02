@@ -1,6 +1,20 @@
 import { tree } from "./core/initialState";
-import { getItemAbove, getItemBelow, isRoot, removeItem } from "./core/tree";
-import { closeItem, createApp, openItem, removeItemFromDom } from "./ui/ui";
+import {
+  Item,
+  appendItemAfter,
+  getItemAbove,
+  getItemBelow,
+  isRoot,
+  item,
+  removeItem,
+} from "./core/tree";
+import {
+  closeItem,
+  createApp,
+  itemAddedAt,
+  openItem,
+  removeItemFromDom,
+} from "./ui/ui";
 import {
   isEditing,
   selectItem,
@@ -44,6 +58,17 @@ window.addEventListener("keydown", (e) => {
     const nextItem = removeItem(selectedItem);
     removeItemFromDom(selectedItem);
     selectItem(nextItem);
+    e.preventDefault();
+  } else if (e.code === "Enter") {
+    const newItem: Item = item("");
+    const newIndex = appendItemAfter(selectedItem, newItem);
+    itemAddedAt(selectedItem.parent!, newIndex);
+    selectItem(newItem);
+    startEdit();
+
+    //calling select second time to adujust properly borders of the selection box
+    //empty text created a smaller height
+    selectItem(newItem);
     e.preventDefault();
   }
 });

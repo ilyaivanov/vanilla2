@@ -80,14 +80,16 @@ export const pushChild = (parent: Item, child: Item) => {
   child.parent = parent;
 };
 
-export const appendChildAfter = (
-  parent: Item,
-  child: Item,
-  appendAfter: Item
-) => {
-  const index = parent.children.indexOf(appendAfter);
-  parent.children.splice(index + 1, 0, child);
-  child.parent = parent;
+export const appendItemAfter = (item: Item, newItem: Item): number => {
+  const parent = item.parent;
+  if (parent) {
+    const index = parent.children.indexOf(item);
+    parent.children.splice(index + 1, 0, newItem);
+    newItem.parent = parent;
+
+    return index + 1;
+  }
+  throw new Error(`No parent on item ${item.title}`);
 };
 
 export const insertChildAt = (parent: Item, child: Item, index: number) => {

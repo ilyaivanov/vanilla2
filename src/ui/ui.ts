@@ -1,6 +1,6 @@
 import { div, fragment, img } from "../platform";
 import { tree } from "../core/initialState";
-import { Item, getItemAbove, getItemBelow, isRoot } from "../core/tree";
+import { Item } from "../core/tree";
 
 import "./ui.scss";
 import "./scrolls.scss";
@@ -28,37 +28,39 @@ function createBoard(element: HTMLElement) {
 }
 
 function renderItem(item: Item): Node {
-  return fragment([
-    div({
-      id: item.id,
-      class: {
-        item: true,
-        "item-with-image": !!item.imageUrl,
-      },
-      children: [
-        item.imageUrl
-          ? img({
-              class: {
-                "item-channel-image": item.type === "channel",
-                "item-video-image": item.type === "video",
-              },
-              src: item.imageUrl,
-            })
-          : div({
-              class: {
-                "item-icon": true,
-                "item-icon-full": item.children.length > 0,
-              },
-            }),
-        div({
-          id: "text-" + item.id,
-          class: "item-text",
-          children: [item.title],
-        }),
-      ],
-    }),
-    item.isOpen && renderChildren(item),
-  ]);
+  return div({
+    children: [
+      div({
+        id: item.id,
+        class: {
+          item: true,
+          "item-with-image": !!item.imageUrl,
+        },
+        children: [
+          item.imageUrl
+            ? img({
+                class: {
+                  "item-channel-image": item.type === "channel",
+                  "item-video-image": item.type === "video",
+                },
+                src: item.imageUrl,
+              })
+            : div({
+                class: {
+                  "item-icon": true,
+                  "item-icon-full": item.children.length > 0,
+                },
+              }),
+          div({
+            id: "text-" + item.id,
+            class: "item-text",
+            children: [item.title],
+          }),
+        ],
+      }),
+      item.isOpen && renderChildren(item),
+    ],
+  });
 }
 function renderChildren(item: Item) {
   const children =
@@ -90,6 +92,7 @@ function renderChildren(item: Item) {
 export function createApp() {
   return div({
     class: "page",
+    id: "c" + tree.root.id,
     children: tree.root.children.map(renderItem),
   });
 }
@@ -112,4 +115,10 @@ export function openItem(item: Item) {
 export function removeItemFromDom(item: Item) {
   document.getElementById("c" + item.id)?.remove();
   document.getElementById(item.id)?.remove();
+}
+
+export function itemAddedAt(parent: Item, index: number) {
+  const childrenElem = document.getElementById("c" + parent.id);
+  const newNode = renderItem(parent.children[index]);
+  childrenElem?.insertBefore(newNode, childrenElem.children[index]);
 }

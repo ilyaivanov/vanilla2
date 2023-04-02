@@ -47,6 +47,7 @@ export function startEdit() {
 
 export function stopEdit() {
   if (editingText) {
+    editingText.removeAttribute("contenteditable");
     editingText.removeEventListener("blur", onBlur);
     editingText.blur();
   }
