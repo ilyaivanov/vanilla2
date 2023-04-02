@@ -108,3 +108,8 @@ export function openItem(item: Item) {
     .getElementById(item.id)
     ?.insertAdjacentElement("afterend", renderChildren(item));
 }
+
+export function removeItemFromDom(item: Item) {
+  document.getElementById("c" + item.id)?.remove();
+  document.getElementById(item.id)?.remove();
+}

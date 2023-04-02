@@ -1,6 +1,6 @@
 import { tree } from "./core/initialState";
-import { getItemAbove, getItemBelow, isRoot } from "./core/tree";
-import { closeItem, createApp, openItem } from "./ui/ui";
+import { getItemAbove, getItemBelow, isRoot, removeItem } from "./core/tree";
+import { closeItem, createApp, openItem, removeItemFromDom } from "./ui/ui";
 import {
   isEditing,
   selectItem,
@@ -39,6 +39,11 @@ window.addEventListener("keydown", (e) => {
       selectItem(selectedItem.children[0]);
   } else if (e.code === "KeyE") {
     startEdit();
+    e.preventDefault();
+  } else if (e.code === "KeyX") {
+    const nextItem = removeItem(selectedItem);
+    removeItemFromDom(selectedItem);
+    selectItem(nextItem);
     e.preventDefault();
   }
 });
