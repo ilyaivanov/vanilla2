@@ -54,6 +54,15 @@ export const board = (text: string, children: Item[] = []): Item => {
   return res;
 };
 
+export const channelAsBoard = (
+  text: string,
+  image: string,
+  children: Item[] = []
+): Item => {
+  const res = channel(text, image, children);
+  res.view = "board";
+  return res;
+};
 export const closedItem = (text: string, children: Item[] = []): Item => {
   const result = item(text, children);
   result.isOpen = false;
