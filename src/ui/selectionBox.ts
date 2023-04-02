@@ -38,7 +38,10 @@ export function startEdit() {
     }
 
     editingText.addEventListener("input", () => {
-      if (editingText) selectedItem.title = editingText.innerText;
+      if (editingText) {
+        selectedItem.title = editingText.innerText;
+        if (editingText.innerText.length == 0) editingText.innerHTML = "&nbsp;";
+      }
     });
 
     editingText.addEventListener("blur", onBlur);

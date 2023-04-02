@@ -29,6 +29,7 @@ function createBoard(element: HTMLElement) {
 
 function renderItem(item: Item): Node {
   return div({
+    id: "container-" + item.id,
     children: [
       div({
         id: item.id,
@@ -113,8 +114,7 @@ export function openItem(item: Item) {
 }
 
 export function removeItemFromDom(item: Item) {
-  document.getElementById("c" + item.id)?.remove();
-  document.getElementById(item.id)?.remove();
+  document.getElementById("container-" + item.id)?.remove();
 }
 
 export function itemAddedAt(parent: Item, index: number) {
