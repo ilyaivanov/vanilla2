@@ -7,7 +7,7 @@ export type Item = {
   children: Item[];
   parent?: Item;
   isOpen: boolean;
-  view: "tree" | "board";
+  view: "tree" | "board" | "gallery";
   type: ItemType;
 
   imageUrl?: string;
@@ -39,12 +39,12 @@ export const channel = (
 
 export const video = (
   text: string,
-  image: string,
+  youtubeId: string,
   children: Item[] = []
 ): Item => {
   const res = item(text, children);
   res.type = "video";
-  res.imageUrl = image;
+  res.imageUrl = `https://i.ytimg.com/vi/${youtubeId}/mqdefault.jpg`;
   return res;
 };
 
@@ -61,6 +61,16 @@ export const channelAsBoard = (
 ): Item => {
   const res = channel(text, image, children);
   res.view = "board";
+  return res;
+};
+
+export const channelAsGallery = (
+  text: string,
+  image: string,
+  children: Item[] = []
+): Item => {
+  const res = channel(text, image, children);
+  res.view = "gallery";
   return res;
 };
 export const closedItem = (text: string, children: Item[] = []): Item => {

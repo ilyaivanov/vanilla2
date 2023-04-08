@@ -5,28 +5,6 @@ import { Item } from "../core/tree";
 import "./ui.scss";
 import "./scrolls.scss";
 
-type ExpandedElement = {
-  originalPadding: number;
-  element: HTMLElement;
-};
-const boards: ExpandedElement[] = [];
-function createBoard(element: HTMLElement) {
-  let originalPadding = 0;
-  let left = 0;
-  // this is ugly, I need to come back to this code later
-  function assignStyles() {
-    //   // i don't need to get left on each resize
-    //   // this will make a flashing position of an element
-    left = element.getBoundingClientRect().left;
-    element.style.transform = `translateX(-${left}px)`;
-    element.style.paddingLeft = left + 20 + "px";
-  }
-  requestAnimationFrame(() => {
-    boards.push({ element, originalPadding });
-    assignStyles();
-  });
-}
-
 function renderItem(item: Item): Node {
   return div({
     id: "container-" + item.id,
@@ -86,7 +64,6 @@ function renderChildren(item: Item) {
     },
   });
 
-  if (item.view === "board") createBoard(res);
   return res;
 }
 

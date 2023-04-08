@@ -2,7 +2,7 @@ type Child = string | Node | undefined | false;
 
 type Props = {
   id?: string;
-  children?: Child[];
+  children?: Child[] | Child;
   class?: string | Record<string, boolean>;
 };
 
@@ -49,11 +49,11 @@ function assignProps<T extends HTMLElement>(el: T, props: Props): T {
     }
   }
 
-  if (props.children) {
+  if (Array.isArray(props.children)) {
     for (const child of props.children) {
       if (child) el.append(child);
     }
-  }
+  } else if (props.children) el.append(props.children);
 
   if (props.id) el.id = props.id;
 
