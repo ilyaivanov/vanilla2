@@ -1,0 +1,73 @@
+$background-color: #1e2021;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: $background-color;
+  color: white;
+
+  font-size: 15px;
+
+  //otherwise 100vw on full-width elemene doesn't work
+  overflow: overlay;
+}
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 30px 0;
+}
+
+.item {
+  padding: 6px;
+  display: flex;
+  align-items: baseline;
+}
+.icon {
+  // this is used to align icon with the baseline of item flex container
+  // basically I want to center icon with the first row of text, not the whole flex element
+  transform: translateY(-0.19em);
+}
+
+.item-text {
+  // this makes the text appear on top of the selection box
+  transform: translateX(0px);
+  outline: none;
+}
+
+.icon {
+  width: 6px;
+  min-width: 6px;
+  height: 6px;
+  background-color: rgb(171, 171, 171);
+
+  margin-right: 6px;
+  box-sizing: border-box;
+}
+
+.icon-empty {
+  background-color: transparent;
+  border: 1px solid rgb(171, 171, 171);
+}
+
+.children {
+  margin-left: 8px;
+  padding-left: 16px;
+  border-left: 2px solid #292a2b;
+}
+
+.page > .children {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page > .children > div > .item {
+  font-size: 18px;
+  font-weight: bold;
+}
