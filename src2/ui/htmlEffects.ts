@@ -4,15 +4,18 @@
 import { viewChildren, viewItem } from "..";
 import { Item } from "../core";
 
-//
 export function closeItem(item: Item) {
   item.isOpen = false;
-  ids.getChildren(item)?.remove();
+  const children = ids.getChildren(item)!;
+
+  collapse(children);
 }
 
 export function openItem(item: Item) {
   item.isOpen = true;
-  ids.getItem(item)?.insertAdjacentElement("afterend", viewChildren(item));
+  const children = viewChildren(item);
+  ids.getItem(item)?.insertAdjacentElement("afterend", children);
+  expand(children);
 }
 
 export function removeItemFromDom(item: Item) {
@@ -40,3 +43,29 @@ export const ids = {
   item: (item: Item) => item.id,
   getItem: (item: Item) => document.getElementById(item.id),
 };
+
+// animations
+
+function collapse(elem: HTMLElement) {
+  const height = elem.clientHeight;
+  elem.style.overflowY = "hidden";
+  elem
+    .animate([{ height: height + "px" }, { height: "0px" }], {
+      duration: Math.max(200, height / 2),
+      easing: "ease-in-out",
+    })
+    .addEventListener("finish", () => elem.remove());
+}
+
+function expand(elem: HTMLElement) {
+  const height = elem.clientHeight;
+  elem.style.overflowY = "hidden";
+  elem
+    .animate([{ height: "0px" }, { height: height + "px" }], {
+      duration: Math.max(200, height / 2),
+      easing: "ease-in",
+    })
+    .addEventListener("finish", () => {
+      elem.style.removeProperty("overflow-y");
+    });
+}
