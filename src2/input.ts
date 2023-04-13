@@ -11,6 +11,8 @@ import {
 import {
   closeItem,
   itemAddedAt,
+  moveItemLeft,
+  moveItemRight,
   openItem,
   removeItemFromDom,
 } from "./ui/htmlEffects";
@@ -41,11 +43,13 @@ window.addEventListener("keydown", (e) => {
     if (nextItem) selectItem(nextItem);
     e.preventDefault();
   } else if (e.code === "ArrowLeft") {
-    if (selectedItem.isOpen) closeItem(selectedItem);
+    if (e.metaKey && e.shiftKey) moveItemLeft(selectedItem);
+    else if (selectedItem.isOpen) closeItem(selectedItem);
     else if (selectedItem.parent && !isRoot(selectedItem.parent))
       selectItem(selectedItem.parent);
   } else if (e.code === "ArrowRight") {
-    if (!selectedItem.isOpen) openItem(selectedItem);
+    if (e.metaKey && e.shiftKey) moveItemRight(selectedItem);
+    else if (!selectedItem.isOpen) openItem(selectedItem);
     else if (selectedItem.children.length > 0)
       selectItem(selectedItem.children[0]);
   } else if (e.code === "KeyE") {

@@ -39,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/ilyaivanov/vanilla2/issues"
   },
-  "homepage": "https://github.com/ilyaivanov/vanilla2#readme"
+  "homepage": "https://github.com/ilyaivanov/vanilla2#readme",
+  "dependencies": {
+    "pixi.js": "^7.2.4"
+  }
 }

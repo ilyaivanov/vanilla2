@@ -8,15 +8,37 @@ export let selectedItem: Item;
 const selectionBox = div({ class: "selection-box" });
 document.body.insertAdjacentElement("afterbegin", selectionBox);
 
+let selectedItemElement: HTMLElement | null;
 export function selectItem(item: Item) {
   selectedItem = item;
-  const selectedDiv = ids.getItem(selectedItem);
-  if (selectedDiv) {
-    const rect = selectedDiv.getBoundingClientRect();
+  selectedItemElement = ids.getItem(selectedItem);
+  updatePosition();
+}
+
+function updatePosition() {
+  if (selectedItemElement) {
+    const rect = selectedItemElement.getBoundingClientRect();
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
     selectionBox.style.top = rect.top + scrollY + "px";
     selectionBox.style.height = rect.height + "px";
   }
+}
+
+function onTick() {
+  updatePosition();
+  console.log("tick");
+  if (runningAnimations > 0) requestAnimationFrame(onTick);
+}
+
+let runningAnimations = 0;
+export function animationStarted() {
+  if (runningAnimations == 0) requestAnimationFrame(onTick);
+
+  runningAnimations += 1;
+}
+
+export function animationFinidhed() {
+  runningAnimations -= 1;
 }
 
 export let isEditing = false;
