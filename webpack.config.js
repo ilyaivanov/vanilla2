@@ -3,7 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => ({
-  entry: "./play/index.ts",
+  // entry: "./play/pixi.ts",
+  // entry: "./pixi.js/modernIndex.js",
+  // entry: "./pixi.js/oldIndex.js",
+  entry: "./webgl/index.ts",
+
   output: {
     filename: `app.js`,
     path: path.resolve(__dirname, "build"),
